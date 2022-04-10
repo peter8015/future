@@ -1,4 +1,4 @@
-package com.macro.mall.algorithm;
+package com.future.algorithm;
 
 import java.util.PriorityQueue;
 

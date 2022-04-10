@@ -3,6 +3,8 @@ package com.future.algorithm;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class QueueCreation {
@@ -14,6 +16,8 @@ public class QueueCreation {
         while(!s.isEmpty()) {
             System.out.println(s.pop());
         }
+
+
     }
 
 
@@ -32,4 +36,19 @@ public class QueueCreation {
         return s2;
     }
 
+
+
+    @Test
+    public void t2() {
+        Set<Integer> sets = new HashSet();
+        boolean b = sets.add(1);
+        System.out.println(b);
+
+
+    }
+
 }
+
+
+
+
