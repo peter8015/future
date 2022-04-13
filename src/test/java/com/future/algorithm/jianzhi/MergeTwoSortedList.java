@@ -64,4 +64,3 @@ public class MergeTwoSortedList {
         return r.next;
     }
 }
-
