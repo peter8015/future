@@ -17,30 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author cliff
  */
 public class ReverseBetween {
-//    @Test
-    public void t2() {
-        //test reverse list
-        ListNode l1 = new ListNode(1);
-        ListNode l2 = new ListNode(2);
-        ListNode l3 = new ListNode(3);
-        ListNode l4 = new ListNode(4);
-        ListNode l5 = new ListNode(5);
-
-        l1.next = l2;
-        l2.next = l3;
-        l3.next = l4;
-        l4.next = l5;
-
-        reverseList(l1);
-//        reverseLinkedList(l1);  //原地反转
-        ListNode head = l5;
-        while (head != null) {
-            System.out.println(head.val);
-            head = head.next;
-        }
-        assertEquals(5, l5.val);
-        assertEquals(4, l5.next.val);
-    }
 
     @Test
     public void t1() throws Exception {
@@ -69,12 +45,9 @@ public class ReverseBetween {
      */
     public ListNode reverseBetweenx(ListNode head, int left, int right) throws Exception {
         // add bound or exception logic
-        if (head == null || head.next == null) {
-        }
-        if (left == 0 || right == 0) {
-        }
+        if (head == null || head.next == null) return head;
 
-        // define leftNode and rightNode, get the child list
+        // add left and right pointer, and determine the position of the left and right pointer
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
 
@@ -88,7 +61,7 @@ public class ReverseBetween {
             rightNode = rightNode.next;
         }
 
-        // get need reverse part of list
+        // add leftNode and curr pointer to store node, and cut List to get child
         ListNode leftNode = pre.next;
         ListNode cur = rightNode.next;
         pre.next = null;
@@ -106,7 +79,7 @@ public class ReverseBetween {
 
     /**
      * Reverse listNode with recursive
-     *
+     * O(n) O(n)
      * @param head
      * @return ListNode
      */
@@ -162,11 +135,6 @@ public class ReverseBetween {
         return dummy.next;
     }
 
-
-
-
-
-
     /**
      * official solution
      */
@@ -217,4 +185,31 @@ public class ReverseBetween {
             cur = next;
         }
     }
+
+    //test reverse
+    @Test
+    public void t2() {
+        //test reverse list
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        ListNode l3 = new ListNode(3);
+        ListNode l4 = new ListNode(4);
+        ListNode l5 = new ListNode(5);
+
+        l1.next = l2;
+        l2.next = l3;
+        l3.next = l4;
+        l4.next = l5;
+
+        reverseList(l1);
+//        reverseLinkedList(l1);  //原地反转
+        ListNode head = l5;
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+        assertEquals(5, l5.val);
+        assertEquals(4, l5.next.val);
+    }
+
 }

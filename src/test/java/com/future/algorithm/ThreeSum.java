@@ -85,16 +85,16 @@ public class ThreeSum {
 
 
     public List<List<Integer>> threeSumx(int[] nums) {
-        // TODO: 4/11/22 add bound logic
+        // add bound logic
         if (nums == null || nums.length < 3) {
             return null;
         }
-        // TODO: 4/11/22 add result
+        // add result
         List<List<Integer>> r = new ArrayList();
-        // TODO: 4/11/22 array sort
+        // array sort
         Arrays.sort(nums);
 
-        // TODO: 4/11/22 for loop, define l&r, move and get ride of dupliation
+        // for loop, define l&r, move and get ride of dupliation
         int len = nums.length;
         for (int i = 0; i < len; i++) {
             if(nums[i] > 0) continue;

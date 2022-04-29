@@ -1,6 +1,5 @@
 package com.future.mianshijindian;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -14,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class AllDiff {
 
-    /**
-     * test cases
-     */
     @Test
     public void t1() {
         String s1 = "abc";
@@ -77,7 +73,6 @@ public class AllDiff {
     }
 
     /**
-     *
      * 解法3：use booean array
      * 时间复杂度：O(n)
      * 空间复杂度：O(1)

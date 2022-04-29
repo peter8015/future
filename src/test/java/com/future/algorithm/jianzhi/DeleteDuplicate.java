@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * 分析：当 cur.val 和 cur.next.val 相等时说明需要去重，则将 cur 的下一个指针指向下一个的下一个，
  * 这样就能达到去重复的效果
  *
- * 时间复杂度： O(n)
+ * 时间复杂度：O(n)，n为链表长度
+ * 空间复杂度：O(1)
  */
 public class DeleteDuplicate {
-
 
     @Test
     public void t1() {
@@ -39,8 +39,11 @@ public class DeleteDuplicate {
         assertEquals(3, r.next.next.val);
     }
 
-
     public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
         ListNode curr = head;
         while (curr != null && curr.next != null) {
             if (curr.val == curr.next.val) {
