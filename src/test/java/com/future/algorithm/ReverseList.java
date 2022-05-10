@@ -1,6 +1,7 @@
 package com.future.algorithm;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -26,7 +27,7 @@ public class ReverseList {
         n2.next = n3;
         n3.next = n4;
 
-        reverseList(n1);
+        reverseT1(n1);
 
         // 1. null & negative & largest &smallest
         assertNull(null);
@@ -83,4 +84,28 @@ public class ReverseList {
         }
         return prev;
     }
+
+
+    public ListNode reverseT1(ListNode head) {
+        System.out.println("时间复杂度为O(n), 空间复杂度为O(1)");
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        //1->2->3->4  1<- 2<- 3<- 4
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while(curr != null) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+
 }
+
+
+

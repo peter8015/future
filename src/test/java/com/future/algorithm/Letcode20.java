@@ -1,22 +1,38 @@
 package com.future.algorithm;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 /**
- * 给定一个只包含大中小括号的字符串，判断字符器是否合法。
+ * 简单
+ * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+ *https://leetcode-cn.com/problems/valid-parentheses/
+ *
+ * 有效字符串需满足：
+ * 左括号必须用相同类型的右括号闭合。
+ * 左括号必须以正确的顺序闭合。
+ *
  * 示例：
  * 输入："()[]{}"  输出：true
  * 输入："([)"     输出：false
  * 输入："((([])))"输出：true
  */
 public class Letcode20 {
+    private static Map<Character, Character> DICT = new HashMap<>();
+
+    static {
+        DICT.put(')', '(');
+        DICT.put('}', '{');
+        DICT.put(']', '[');
+    }
 
     @Test
     public void t2() {
@@ -26,42 +42,74 @@ public class Letcode20 {
         String s4 = "()(){}[](((])))";
         String s5 = "([}}])";
 
-        assertTrue(isValid(s3));
+        assertTrue(isValid_1(s1));
+        assertFalse(isValid_1(s2));
+    }
+
+    //O(n) O(n)
+    public boolean isValid_1(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else if (stack.isEmpty()
+                    || c == ')' && stack.pop() != '('
+                    || c == ']' && stack.pop() != '['
+                    || c == '}' && stack.pop() != '{') {
+                return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
 
-    public boolean isValid(String s) {
-        //boundary
-        if (s == null) {
-            return false;
-        }
-        if (s.length() % 2 == 1) {
-            return false;
-        }
+    /**
+     * 时间复杂度 O(n)
+     * 空间复杂度：O(n + ∣Σ∣)，其中 Σ 表示字符集，本题中字符串只包含 6 种括号，
+     * 栈中的字符数量为 O(n)，而哈希表使用的空间为 O(∣Σ∣)，相加即可得到总空间复杂度。
+     */
+    public boolean isValid_2(String s) {
+        char[] chars = s.toCharArray();
+        int len = chars.length;
+        if (len % 2 != 0) return false;
 
-        //dictionary
-        Map<Character, Character> dict = new HashMap();
-        dict.put('(', ')');
-        dict.put('[', ']');
-        dict.put('{', '}');
+        Stack<Character> data = new Stack();
 
-        //stack
-        Stack<Character> stack = new Stack();
-        for (Character c : s.toCharArray()) {
-            if (!stack.isEmpty() && c == dict.get(stack.peek())) {
-                stack.pop();
+        for (int i = 0; i < len; i++) {
+            char c = chars[i];
+
+            if (DICT.containsKey(c)) {
+                if (data.isEmpty() || data.peek() != DICT.get(c)) {
+                    return false;
+                }
+                data.pop();
             } else {
-                stack.push(c);
+                data.push(c);
             }
         }
 
-        if (stack.isEmpty()) {
+        if (data.isEmpty()) {
             return true;
         }
-
         return false;
     }
+
+
+
+    //"()[]{}"
+    //"{[()]}"
+    public boolean isValid_3(String s) {
+        while (true) {
+            int l = s.length();
+
+            s = s.replace("()", "");
+            s = s.replace("[]", "");
+            s = s.replace("{}", "");
+
+            if (s.length() == l)
+                return l == 0;
+        }
+    }
 }
-
-
-
