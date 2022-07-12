@@ -1,9 +1,7 @@
 package com.future.algorithm;
 
-import net.minidev.json.JSONUtil;
-import org.apache.juli.logging.LogFactory;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
+
+import org.junit.Test;
 
 import java.util.*;
 
@@ -16,6 +14,11 @@ import java.util.*;
  * <p>
  * //https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/comments/
  * //    https://www.iteye.com/blog/2751459205-2181764
+ *
+ * 方案一：暴力求解O(N^2)  O(1)
+ * 方案二：哈希算法O(n) O(n)
+ * 方案三：数组法O(n) O(n)
+ * 方案四：最优解法O(n) O(1)
  */
 public class FindUnique {
 
@@ -43,7 +46,7 @@ public class FindUnique {
         for (int i = 0; i < nums.length; i++) {
             if (r.contains(nums[i])) {
                 continue;
-             }
+            }
             for (int k = 0; k != nums.length; k++) {
                 if (nums[i] != nums[k]) {
                     c++;
@@ -83,8 +86,8 @@ public class FindUnique {
         List<Map.Entry<String, Integer>> entries = new ArrayList(c_map.entrySet());
         Collections.sort(entries, (o1, o2) -> o1.getValue() - o2.getValue());
 
-        for(int i = 0; i < entries.size(); i++) {
-            Map.Entry<String, Integer> entry =  entries.get(i);
+        for (int i = 0; i < entries.size(); i++) {
+            Map.Entry<String, Integer> entry = entries.get(i);
             System.out.println(String.format("key: %s, value:%s", entry.getKey(), entry.getValue()));
         }
     }
@@ -102,9 +105,35 @@ public class FindUnique {
         List<Map.Entry<String, Integer>> entries = new ArrayList(data.entrySet());
         Collections.sort(entries, (o1, o2) -> o1.getValue() - o2.getValue());
 
-        for(int i = 0; i < entries.size(); i++) {
-            Map.Entry<String, Integer> entry =  entries.get(i);
+        for (int i = 0; i < entries.size(); i++) {
+            Map.Entry<String, Integer> entry = entries.get(i);
             System.out.println(String.format("key: %s, value:%s", entry.getKey(), entry.getValue()));
         }
     }
+
+
+    /**
+     * 方案四：最优解法  找出重复元素，不做记录
+     * @param nums
+     * @return
+     *
+     */
+    public int findDupliates(int[] nums) {
+        int[] r = new int[nums.length];
+
+        int k = 0;
+        for(int i = 0; i < nums.length; i++) {
+            while(nums[i] != i) {
+                if(nums[i] == nums[nums[i]]) {
+                    return nums[i];
+                }
+                int temp = nums[nums[i]];
+                nums[nums[i]] = nums[i];
+                nums[i] = temp;
+            }
+        }
+
+        return -1;
+    }
+
 }

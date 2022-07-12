@@ -1,6 +1,6 @@
 package com.future.othertest;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,15 @@ public class OOM {
     }
 
     @Test
-    public void t1() {
+
+    public void t1() throws InterruptedException {
         List<OOMObject> list = new ArrayList<>();
+        int count = 0;
 
         while (true) {
             list.add(new OOMObject());
+            System.out.println(count++);
         }
-
     }
 
     @Test
@@ -66,10 +68,5 @@ public class OOM {
         allocation2 = new byte[2 * _1MB];
         allocation3 = new byte[2 * _1MB];
         allocation4 = new byte[4 * _1MB];
-
-
-
-
-
     }
 }

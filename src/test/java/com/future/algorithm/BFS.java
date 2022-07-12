@@ -21,7 +21,6 @@ public class BFS {
         TreeNode node3 = new TreeNode(3, node6, node7);
         TreeNode node1 = new TreeNode(1, node2, node3);
 
-
         //1 2 3 4 5 6 7
         bfs(node1);
     }

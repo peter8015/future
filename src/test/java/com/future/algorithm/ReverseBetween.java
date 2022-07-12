@@ -32,9 +32,20 @@ public class ReverseBetween {
         l3.next = l4;
         l4.next = l5;
 
-        ListNode node = reverseListBetweenT1(l1, 2, 4);
-//        ListNode node = reverseBetweeny(l1, 2,4);
-        assertEquals(4, node.next.val);
+        ListNode r = reverseBetween3(l1, 2, 4);
+
+        ListNode node = l1; // for print
+        System.out.println();
+        while(node != null) {
+            System.out.print(String.format("%d->", node.val));
+            node = node.next;
+        }
+        System.out.println();
+
+//        1->2->3->4->5   1->4->3->2->5
+        assertEquals(4, r.next.val);
+        assertEquals(2, r.next.next.next.val);
+        assertEquals(5, r.next.next.next.next.val);
     }
 
     /**
@@ -71,7 +82,7 @@ public class ReverseBetween {
         rightNode.next = null;
 
         // reverse child list
-        reverseList(leftNode);
+        reverseLinkedList(leftNode);
 
         // get final result with docking list
         pre.next = rightNode;
@@ -100,46 +111,7 @@ public class ReverseBetween {
         return p;
     }
 
-
-    public ListNode reverseBetweenz(ListNode head, int left, int right) {
-        // add bound and exception logic
-        if (head == null || head.next == null) return head;
-        if (left == 0 && right == 0) {
-            reverseList(head);
-        }
-
-        //init and stores left/right pointer
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-
-        ListNode prev = dummy;
-        for (int i = 0; i < left - 1; i++) {
-            prev = prev.next;
-        }
-
-        ListNode rightNode = prev;
-        for (int i = 0; i < right - left + 1; i++) {
-            rightNode = rightNode.next;
-        }
-
-        // intercept list from left to right
-        ListNode leftNode = prev.next;
-        ListNode curr = rightNode.next;
-
-        prev.next = null;
-        rightNode.next = null;
-
-        // reverse child list
-        reverseList(leftNode);
-
-        // docking original list
-        prev.next = rightNode;
-        leftNode.next = curr;
-
-        return dummy.next;
-    }
-
-
+    // 迭代方案 O(n) O(1)
     private void reverseLinkedList(ListNode head) {
         // 也可以使用递归反转一个链表
         ListNode pre = null;
@@ -153,15 +125,13 @@ public class ReverseBetween {
         }
     }
 
-
-    //O(n) O(1)
     public ListNode reverseListBetweenT1(ListNode head, int left, int right) {
-        //bound logic
-        if(head == null || head.next == null) {
+        // bound logic
+        if (head == null || head.next == null) {
             return head;
         }
 
-        //get sublist
+        // cut sub list and reverse
         ListNode dump = new ListNode(-1);
         dump.next = head;
 
@@ -180,13 +150,80 @@ public class ReverseBetween {
         prev.next = null;
         rightNode.next = null;
 
-        //reverse list
-        reverseList(leftNode);
+        reverse(head);
 
-        // leftNode(prev.next)  curr(rightNode.next)
         prev.next = rightNode;
-        rightNode.next = curr;
+        leftNode.next = curr;
 
         return dump.next;
+    }
+
+    public void reverse(ListNode head) {
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+    }
+
+    public ListNode reverseBetween3(ListNode head, int left, int right) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode dump = new ListNode(-1);
+        dump.next = head;
+
+        ListNode prev = dump;
+        for(int i = 0; i < left - 1; i++) {
+            prev = prev.next;
+        }
+
+        ListNode rightNode = prev;
+        for(int i = 0; i < right - left + 1; i++) {
+            rightNode = rightNode.next;
+        }
+
+        ListNode leftNode = prev.next;
+        ListNode curr = rightNode.next;
+
+        prev.next = null;
+        rightNode.next = null;
+
+        reverse3(leftNode);
+
+        prev.next = rightNode;
+        leftNode.next = curr;
+
+        return dump.next;
+    }
+
+
+    public ListNode reverse3(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while(curr != null) {
+            ListNode temp = curr.next;
+
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+
+        }
+
+        return prev;
     }
 }

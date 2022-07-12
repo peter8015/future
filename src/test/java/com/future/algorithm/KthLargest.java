@@ -4,13 +4,14 @@ package com.future.algorithm;
 import java.util.PriorityQueue;
 
 /**
- * 判断数据流中第k大元素
+ * 题目：设计一个在数据流中找到第k大元素的类。
  * input: {13, 25, 33, 66, 7};  k=3  add key 8
  * output:  13
  *
  * 思路： 使用堆排序思想，找出第k大元素，用优先级队列实现。
  * 时间复杂度为O(nlogn)  空间复杂度
  * 构建堆的平均时间复杂度为O(n)
+ * https://leetcode.cn/problems/kth-largest-element-in-a-stream/
  */
 public class KthLargest {
     // think: heap implement

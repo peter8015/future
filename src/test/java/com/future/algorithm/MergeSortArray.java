@@ -1,7 +1,6 @@
 package com.future.algorithm;
 
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Arrays;
 
@@ -25,7 +24,9 @@ public class MergeSortArray {
         int[] nums2 = new int[]{3, 5, 6};
         int m = 3, n = 3;
 
-        mergex(nums1, m, nums2, n);
+//        mergex(nums1, m, nums2, n);
+//        merge1(nums1, m, nums2, n);
+        merge2(nums1, m, nums2, n);
         System.out.println(Arrays.toString(nums1));
     }
 
@@ -41,6 +42,38 @@ public class MergeSortArray {
             nums1[m + i] = nums2[i];
         }
         Arrays.sort(nums1);
+    }
+
+    /**
+     * 暴力解法
+     * O((m + n) * log(m + n))
+     * O(1)
+     */
+    public void merge1(int[] nums1, int m, int[] nums2, int n) {
+        System.arraycopy(nums2, 0, nums1, m, n);
+        Arrays.sort(nums1);
+    }
+
+    /**
+     * O(m + n)
+     * O(m)
+     */
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        int[] nums1_c = new int[m];
+        System.arraycopy(nums1, 0, nums1_c, 0, m);
+
+        int p1 = 0, p2 = 0, p = 0;
+
+        while (p1 < m && p2 < n) {
+            nums1[p++] = (nums1_c[p1] < nums2[p2] ? nums1_c[p1++] : nums2[p2++]);
+        }
+        if (p1 < m) {
+            System.arraycopy(nums1_c, p1, nums1, p1 + p2, m + n - p1 - p2);
+        }
+
+        if (p2 < n) {
+            System.arraycopy(nums2, p2, nums1, p1 + p2, m + n - p1 - p2);
+        }
     }
 
     /**
@@ -81,5 +114,6 @@ public class MergeSortArray {
             nums1[i] = sorted[i];
         }
     }
+
 
 }
