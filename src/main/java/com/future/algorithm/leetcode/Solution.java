@@ -1,5 +1,6 @@
-package com.future.algorithm;
+package com.future.algorithm.leetcode;
 
+import com.future.algorithm.ListNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -1,4 +1,4 @@
-package com.future.algorithm;
+package com.future.algorithm.leetcode;
 
 import org.junit.Test;
 
@@ -16,12 +16,11 @@ public class Solution45 {
         assertEquals(3, step);
     }
 
-    //O(n), O(1)
     public int jump(int[] nums) {
-        int len = nums.length;
+        int length = nums.length;
         int maxPos = 0, end = 0, step = 0;
 
-        for(int i = 0; i < len - 1; i++) {
+        for(int i = 0; i < length - 1; i++) {
             maxPos = Math.max(maxPos, i + nums[i]);
 
             if(i == end) {
@@ -29,6 +28,8 @@ public class Solution45 {
                 step++;
             }
         }
+
         return step;
     }
+
 }

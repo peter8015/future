@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FutureApplication {
 
+
     @GetMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "world") String name) {
         log.info("hi {}, i have deploy on ecs!!", name);

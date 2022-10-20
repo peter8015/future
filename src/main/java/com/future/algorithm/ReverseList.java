@@ -3,8 +3,8 @@ package com.future.algorithm;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  * 反转链表 反转单链表

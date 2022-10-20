@@ -11,7 +11,8 @@ public class StreamTest {
 
     private StopWatch stopWatch = new StopWatch();
 
-    //    @Test
+    //    @
+
     public void t3() {
         List<String> nameLists = Arrays.asList("Lvshen", "Lvshen", "Zhouzhou", "Huamulan", "Huamulan", "Huamulan");
         Map<String, Long> nameMap = nameLists.stream().collect(Collectors.groupingBy(p -> p, Collectors.counting()));

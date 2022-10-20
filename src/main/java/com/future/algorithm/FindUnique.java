@@ -12,7 +12,7 @@ import java.util.*;
  * 1-3, 2- 2, 3-3,8-7
  * output2: 8，3， 1，2
  * <p>
- * //https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/comments/
+ * https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/comments/
  * //    https://www.iteye.com/blog/2751459205-2181764
  *
  * 方案一：暴力求解O(N^2)  O(1)
@@ -28,11 +28,6 @@ public class FindUnique {
 //        List<Integer> unique = findUnique(ints);
 //        System.out.println(unique.size());
 
-//        List<Integer> dup = findDuplicate(ints);
-
-//        for (Integer i : dup) {
-//            System.out.println(i);
-//        }
     }
 
     //方法1：暴力求解 O(n^2)

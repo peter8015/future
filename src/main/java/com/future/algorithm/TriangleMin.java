@@ -1,9 +1,9 @@
 package com.future.algorithm;
 
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,30 +24,21 @@ import java.util.List;
  *
  * 时间复杂度：O(n^2) n为三角形的行数
  * 空间复杂度：O(n^2) n为三角形的行数
+ *
+ * 1. clarfication
+ * 2. possible solutions
+ * 3
  */
 public class TriangleMin {
     @Test
     public void t1() {
         List<List<Integer>> triangles = new ArrayList<>();
 
-        List<Integer> e1 = new ArrayList<>();
-        e1.add(2);
-        triangles.add(e1);
-        List<Integer> e2 = new ArrayList<>();
-        e2.add(3);
-        e2.add(4);
-        triangles.add(e2);
-        List<Integer> e3 = new ArrayList<>();
-        e3.add(6);
-        e3.add(5);
-        e3.add(7);
-        triangles.add(e3);
-        List<Integer> e4 = new ArrayList<>();
-        e4.add(4);
-        e4.add(1);
-        e4.add(8);
-        e4.add(3);
-        triangles.add(e4);
+        triangles = Arrays.asList(
+                Arrays.asList(2),
+                Arrays.asList(3,4),
+                Arrays.asList(6, 5, 7),
+                Arrays.asList(4,1,8,3));
 
         System.out.println(minTotal(triangles));
     }
